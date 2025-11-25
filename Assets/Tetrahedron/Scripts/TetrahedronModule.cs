@@ -278,8 +278,14 @@ public class TetrahedronModule : MonoBehaviour {
 		yield return award;
 	}
 
-	private IEnumerator TwitchHandleForcedSolve() {
+	private void TwitchHandleForcedSolve()
+    {
 		forceSolved = true;
+		StartCoroutine(StartTetrahedronAutosolver());
+    }
+
+	private IEnumerator StartTetrahedronAutosolver() {
+		
 		Debug.LogFormat("[Tetrahedron #{0}] Autosolver started", moduleId);
 		yield return new WaitForSeconds(.1f);
 		while (!activated) yield return true;
